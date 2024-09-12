@@ -11,6 +11,8 @@ import Login from './Components/login.jsx';
 import Signup from './Components/signup.jsx';
 import Footer from './Components/footer.jsx';
 import Hero from './Components/hero.jsx';
+import Blog from './Components/bloggers.jsx';
+
 
 function App() {
 
@@ -56,6 +58,7 @@ function App() {
           <Route exact path='/' element={LandingPage ({ heroData, heroCount, setHeroCount }) }/>
           <Route exact path='/home' element={HomePage ({ heroData, heroCount, setHeroCount }) } />
           <Route exact path='/discover' element={<Discover />} />
+          <Route exact path='/bloggers' element={<Blog />} />
           <Route exact path='/favourites' element={<Favourites />} />
           <Route exact path='/login' element={<Login />} />
           <Route exact path='/signup' element={<Signup />} />
