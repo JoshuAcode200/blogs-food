@@ -1,8 +1,14 @@
 import '../index.css';
 import { Link } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
+import LazyLoad from 'react-lazyload';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock, faMugHot } from '@fortawesome/free-solid-svg-icons'; // Import both icons
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import { Navigation, Pagination } from 'swiper/modules';
 import image35 from '../assets/pics/pexels-35.jpg';
 import image16 from '../assets/pics/pexels-16.jpg';
 import image3 from '../assets/pics/pexels-3.jpg';
@@ -54,30 +60,6 @@ const Home = ({ heroData, heroCount, setHeroCount }) => {
   const recipes = [
     {
       id: 1,
-      name: "Spaghetti Carbonara",
-      image: image35,
-      description: "A classic Italian pasta dish with eggs, cheese, pancetta, and pepper.",
-      prepTime: "15 mins", // Adding prep time
-      cookTime: "30 mins"  // Adding cook time
-    },
-    {
-      id: 2,
-      name: "Grilled Chicken Salad",
-      image: image16,
-      description: "A healthy salad with grilled chicken, mixed greens, and a tangy vinaigrette.",
-      prepTime: "10 mins",
-      cookTime: "20 mins"
-    },
-    {
-      id: 3,
-      name: "Vegan Tacos",
-      image: image3,
-      description: "Delicious vegan tacos with avocado, beans, and fresh salsa.",
-      prepTime: "20 mins",
-      cookTime: "15 mins"
-    },
-    {
-      id: 4,
       name: "Vegan Tacos",
       image: image26,
       description: "Delicious vegan tacos with avocado, beans, and fresh salsa.",
@@ -85,7 +67,7 @@ const Home = ({ heroData, heroCount, setHeroCount }) => {
       cookTime: "15 mins"
     },
     {
-      id: 5,
+      id: 2,
       name: "Vegan Tacos",
       image: image19,
       description: "Delicious vegan tacos with avocado, beans, and fresh salsa.",
@@ -93,7 +75,7 @@ const Home = ({ heroData, heroCount, setHeroCount }) => {
       cookTime: "15 mins"
     },
     {
-      id: 6,
+      id: 3,
       name: "Vegan Tacos",
       image: image2,
       description: "Delicious vegan tacos with avocado, beans, and fresh salsa.",
@@ -102,9 +84,61 @@ const Home = ({ heroData, heroCount, setHeroCount }) => {
     }
   ];
   
+  const bloggs = [
+    {
+      id: 1,
+      name: "The Unique Spaghetti Carbonara",
+      image: image35,
+      description: "A classic Italian pasta dish with eggs, cheese, pancetta, and pepper.",
+      profile: image2
+    },
+    {
+      id: 2,
+      name: "Are vegan tacos worth it?",
+      image: image35,
+      description: "A classic Italian pasta dish with eggs, cheese, pancetta, and pepper.",
+      profile: image2
+    },
+    {
+      id: 3,
+      name: "Supersonic sauces",
+      image: image35,
+      description: "A classic Italian pasta dish with eggs, cheese, pancetta, and pepper.",
+      profile: image2
+    },
+    {
+      id: 4,
+      name: "The French fries secret",
+      image: image35,
+      description: "A classic Italian pasta dish with eggs, cheese, pancetta, and pepper.",
+      profile: image2
+    },
+    {
+      id: 5,
+      name: "Spaghetti Carbonara",
+      image: image35,
+      description: "A classic Italian pasta dish with eggs, cheese, pancetta, and pepper.",
+      profile: image2
+    },
+    {
+      id: 6,
+      name: "Grilled Chicken Salad",
+      image: image16,
+      description: "A healthy salad with grilled chicken, mixed greens, and a tangy vinaigrette.",
+      profile: image2
+    },
+    {
+      id: 7,
+      name: "Vegan Tacos",
+      image: image3,
+      description: "Delicious vegan tacos with avocado, beans, and fresh salsa.",
+      profile: image2
+    }
+ ];
 
   return (
-    <div className="home">
+    <LazyLoad height={300} offset={100} once placeholder={<div>Loading..</div>}>
+      <div className="home">
       <div className="hero">
         <div className="hero-text typewriter">
           <p id="typed-text1">{text1}</p>
@@ -121,47 +155,108 @@ const Home = ({ heroData, heroCount, setHeroCount }) => {
         </button>
       </div>
 
-      {/* Some content here to simulate scrolling */}
-      <div className="mt-20 mb-10 text-center">
-        <h2 className="text-4xl font-bold">Welcome to Food Mongers</h2>
-        <p className="text-lg mt-4">Scroll down to explore delicious recipes.</p>
+      {/* Introduction Content */}
+      <div className="mt-32 mb-10 text-center flex items-center justify-center font-body">
+        <div className="mr-4">
+          <h2 className="text-3xl font-semi-bold font-body">
+            Welcome to<span className="font-write text-4xl font-bold"> Food</span>
+            <span className="font-logo font-bold text-4xl"> Mongers</span>
+          </h2>
+          <p className="text-xl mt-4">The No.1 food blog website</p>
+        </div>
+        <div>
+          <img 
+            src={image35} 
+            alt="Food Mongers" 
+            className="rounded-full" 
+            style={{ width: '80px', height: '80px' }} // Set the optimal size for the image
+          />
+        </div>
       </div>
+      <div className="bg-gray-200 mb-24 mt-20">
+        <p className="font-body mt-20 flex justify-center text-2xl">Check out awesome recipes</p>
+        <div ref={recipesSectionRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10 my-20">
+          {recipes.map((recipe) => (
+            <div 
+              key={recipe.id} 
+              className="bg-white rounded-lg shadow-lg overflow-hidden transition hover:shadow-xl hover:scale-[0.9]"
+            >
+              <img src={recipe.image} alt={recipe.name} className="w-full h-48 object-cover" />
+              <div className="p-6">
+                <h3 className="text-2xl font-bold mb-2 font-body">{recipe.name}</h3>
+                <p className="text-gray-700 font-body">{recipe.description}</p>
+              </div>
 
-      <div ref={recipesSectionRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
-        {recipes.map((recipe) => (
-          <div 
-            key={recipe.id} 
-            className="bg-white rounded-lg shadow-lg overflow-hidden transition hover:shadow-xl hover:scale-[0.9] group"
-          >
-            <img src={recipe.image} alt={recipe.name} className="w-full h-48 object-cover" />
-            <div className="p-6">
-              <h3 className="text-2xl font-bold mb-2">{recipe.name}</h3>
-              <p className="text-gray-700">{recipe.description}</p>
-            </div>
-
-            {/* Initially hidden content that reveals on hover */}
-            <div className="p-6 border-t flex-row font-body opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out">
-              <button className="flex mt-2 px-4 py-2 text-md text-white bg-blue-600 rounded-md hover:bg-blue-700">
-                View Recipe
-              </button>
-              <div className="flex flex-col items-center ml-11 text-md">
-                <div className="flex items-center">
-                  {/* Prep Time with coffee icon */}
-                  <FontAwesomeIcon icon={faMugHot} className="text-gray-500 mr-2" />  
-                  <span className="text-gray-600 text-md">Prep: {recipe.prepTime}</span>
-                </div>
-                <div className="flex items-center">
-                  {/* Cook Time with clock icon */}
-                  <FontAwesomeIcon icon={faClock} className="text-gray-500 mr-2" />
-                  <span className="text-gray-600 text-md">Cook: {recipe.cookTime}</span>
+              {/* Initially hidden content that reveals on hover */}
+              <div className="p-6 border-t flex items-center justify-between font-body h-20">
+                <button className="flex mt-2 px-4 py-2 text-md text-white bg-blue-600 rounded-md hover:bg-blue-700">
+                  View Recipe
+                </button>
+                <div className="flex flex-col items-end text-md">
+                  <div className="flex items-center">
+                    {/* Prep Time with coffee icon */}
+                    <FontAwesomeIcon icon={faMugHot} className="text-gray-800 mr-2" />
+                    <span className="text-gray-800 text-md">Prep: {recipe.prepTime}</span>
+                  </div>
+                  <div className="flex items-center">
+                    {/* Cook Time with clock icon */}
+                    <FontAwesomeIcon icon={faClock} className="text-gray-800 mr-2" />
+                    <span className="text-gray-800 text-md">Cook: {recipe.cookTime}</span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-        
+      
+      <div>
+        <div className='font-body font-bold flex justify-center text-2xl mb-20'>Blogs</div>
+        <div className="featured-slider">
+          <Swiper
+            spaceBetween={30}
+            slidesPerView={2.2} // Slightly reduce the number of slides per view to shrink the size of each card
+            navigation
+            pagination={{ clickable: true }}
+            modules={[Navigation, Pagination]}
+            className="mySwiper"
+          >
+            {bloggs.map((blogg) => (
+              <SwiperSlide key={blogg.id}>
+                <div
+                  className="bg-white rounded-lg font-body shadow-lg overflow-hidden transition hover:shadow-xl hover:scale-[0.9] w-[90%] mx-auto"  // Adjust card width
+                >
+                  <img src={blogg.image} alt={blogg.name} className="w-full h-48 object-cover" />
+                  <div className="p-6 flex flex-wrap font-body">
+                    <h3 className="text-2xl font-bold mb-2">{blogg.name}</h3>
+                    <p className="text-gray-700 break-words"> {/* Ensure text wraps */}
+                      {blogg.description}
+                    </p>
+                  </div>
+
+                  <div className="p-6 border-t flex flex-row font-body h-20 ">
+                    <button className="flex px-4 py-2 text-md text-white bg-blue-600 rounded-md hover:bg-blue-700">
+                      Read More
+                    </button>
+                    <div className="ml-4 mt-2 flex items-center">
+                      <img
+                        src={blogg.profile}
+                        alt="Profile"
+                        className="w-10 h-10 rounded-full"
+                      />
+                      <span className="ml-6 text-gray-600">Written by John Doe</span>
+                    </div>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      </div>
+      
+      <div></div>
     </div>
+    </LazyLoad>
   );
 };
 

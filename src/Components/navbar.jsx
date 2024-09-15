@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { GiFruitBowl } from "react-icons/gi";
+import { FaStore } from "react-icons/fa";
+
 
 const Navbar = () => {
   // State to control search bar visibility
@@ -32,6 +34,7 @@ const Navbar = () => {
             <li><Link to="/home" className='px-4 py-2 hover:bg-white hover:text-black rounded-full'>Home</Link></li>
             <li><Link to="/discover" className='px-4 py-2 hover:bg-white hover:text-black rounded-full'>Discover</Link></li>
             <li><Link to="/bloggers" className='px-4 py-2 hover:bg-white hover:text-black rounded-full'>Blogs</Link></li>
+            <li><Link to="/events" className='px-4 py-2 hover:bg-white hover:text-black rounded-full'>Events</Link></li>
             <li><Link to="/contact" className='px-4 py-2 hover:bg-white hover:text-black rounded-full'>Contact</Link></li>
           </ul> 
         </div>
@@ -54,22 +57,25 @@ const Navbar = () => {
 
           {/* Search Icon */}
           <div
-            className="fas fa-search cursor-pointer mt-1.5"
+            className="fas fa-search cursor-pointer mt-1.5 hover:text-yellow-500"
             onClick={toggleSearch}
           ></div>
 
+          {/*Store Icon*/}
+          <Link to="store"><FaStore className='text-white hover:text-yellow-500 text-2xl mt-2'/></Link>
+
           {/* Favourites Link */}
           <div>
-            <Link to="/favourites" className="fas fa-heart cursor-pointer"></Link>
+            <Link to="/favourites" className="fas fa-heart cursor-pointer hover:text-yellow-500"></Link>
           </div>
 
           {/* User Dropdown */}
           <div className="relative">
             <button
-              onClick={() => handleDropdown('blogs')}
+              onClick={() => handleDropdown('menu')}
               className="fas fa-user cursor-pointer rounded-md transition text-2xl"
             ></button>
-            {dropdown === 'blogs' && (
+            {dropdown === 'menu' && (
               <div className="absolute mt-2 w-48 bg-white text-green-600 shadow-lg rounded-md">
                 <Link to="/signup" className="block px-4 py-2 text-lg hover:bg-green-100">
                   Signup
