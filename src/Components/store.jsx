@@ -78,9 +78,9 @@ const Store = () => {
 
   return (
     <div className='container'>
-      <div className="bg-gray-200 mb-24 mt-20">
-        <p className="font-body mt-20 flex justify-center text-2xl">Store</p>
-        <p className="font-body mt-20 flex justify-center text-lg">Need new hardware? Check these out!</p>
+      <div className="mb-24 mt-10">
+        <p className="font-body font-bold flex justify-center text-3xl">Store</p>
+        <p className="font-body mt-20 flex justify-center text-xl">Need new hardware? Check these out!</p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10 my-20">
           {buys.map((buy) => (
             <div 
@@ -101,13 +101,12 @@ const Store = () => {
                 </button>
                 <a
                   href='#'
-                  className='fas fa-heart text-black text-4xl py-4 px-6 hover:bg-red-700 hover:text-white'
+                  className='fas fa-heart text-black text-4xl py-4 px-6 hover:text-red-700'
                   onClick={() => handleFavoriteClick(buy)}
                 ></a>
-                <div className="flex flex-col items-end text-md">
-                  <div className="flex items-center">
-                    <FontAwesomeIcon icon={faMugHot} className="text-gray-800 mr-2" />
-                    <span className="text-gray-800 text-md">Buy: {buy.cost}</span>
+                <div className="flex items-center text-xl">
+                  <div>
+                    <span className="text-gray-800 text-xl">Buy:{buy.cost}</span>
                   </div>
                 </div>
               </div>

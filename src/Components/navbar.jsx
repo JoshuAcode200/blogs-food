@@ -21,21 +21,20 @@ const Navbar = () => {
 
   return (
     <nav className="flex flex-col gap-3 mb-20">
-      <div className="flex flex-row mb-3 mt-0 justify-between items-center text-white font-normal w-full px-5 bg-transparent"> 
+      <div className="flex flex-row mb-3 mt-0 justify-between items-center text-yellow-500 font-normal w-full px-5 bg-transparent"> 
         <div className="text-4xl text-yellow-400">
           <div className="ml-14"><GiFruitBowl /></div>
-          <a href="/home" className="font-medium text-4xl text-yellow-400 font-body items-center">
-           food <span className='text-yellow-800 font-logo'>Mongers</span>
+          <a href="/home" className="font-medium text-4xl text-yellow-500 font-body items-center">
+           food <span className='text-yellow-600 font-logo -ml-1'>Mongers</span>
           </a>
         </div>
 
-        <div className= "md:block lg:flex flex-col md:flex-row gap-20 pl-20 ml-12 bg-transparent align-center"> {/* Transparent background for dropdown */}
+        <div className= "md:block lg:flex flex-col md:flex-row gap-20 pl-20 ml-12 bg-transparent align-center font-body"> {/* Transparent background for dropdown */}
           <ul className="flex md:flex-row justify-center list-none text-2xl gap-10 text-white">
-            <li><Link to="/home" className='px-4 py-2 hover:bg-white hover:text-black rounded-full'>Home</Link></li>
-            <li><Link to="/discover" className='px-4 py-2 hover:bg-white hover:text-black rounded-full'>Discover</Link></li>
-            <li><Link to="/bloggers" className='px-4 py-2 hover:bg-white hover:text-black rounded-full'>Blogs</Link></li>
-            <li><Link to="/events" className='px-4 py-2 hover:bg-white hover:text-black rounded-full'>Events</Link></li>
-            <li><Link to="/contact" className='px-4 py-2 hover:bg-white hover:text-black rounded-full'>Contact</Link></li>
+            <li><Link to="/home" className='px-4 py-2'>Home</Link></li>
+            <li><Link to="/discover" className='px-4 py-2'>Discover</Link></li>
+            <li><Link to="/bloggers" className='px-4 py-2'>Blogs</Link></li>
+            <li><Link to="/events" className='px-4 py-2'>Events</Link></li>
           </ul> 
         </div>
 
@@ -47,7 +46,7 @@ const Navbar = () => {
             <input
               type="search"
               placeholder="search..."
-              className={`text-xl py-2 h-full text-black border-white p-3 ${isSearchVisible ? 'block' : 'hidden'}`}
+              className={`text-xl py-2 h-full text-black border-black p-3 ${isSearchVisible ? 'block' : 'hidden'}`}
             />
             <label
               htmlFor="search-box"
@@ -57,17 +56,23 @@ const Navbar = () => {
 
           {/* Search Icon */}
           <div
-            className="fas fa-search cursor-pointer mt-1.5 hover:text-yellow-500"
+            className="fas fa-search cursor-pointer mt-1 text-yellow-500"
             onClick={toggleSearch}
           ></div>
-
+          
           {/*Store Icon*/}
-          <Link to="store"><FaStore className='text-white hover:text-yellow-500 text-2xl mt-2'/></Link>
+          <Link to="store"><FaStore className="text-yellow-500 text-2xl mt-2"/></Link>
 
           {/* Favourites Link */}
           <div>
-            <Link to="/favourites" className="fas fa-heart cursor-pointer hover:text-yellow-500"></Link>
+            <Link
+              to='/favorites'
+              className="cursor-pointer text-yellow-500 hover:text-yellow-600 transition-all duration-300 ease-in-out">
+              <i className="fas fa-heart"></i>
+            </Link>
           </div>
+
+
 
           {/* User Dropdown */}
           <div className="relative">

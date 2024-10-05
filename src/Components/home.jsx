@@ -145,7 +145,7 @@ const Home = ({ heroData, heroCount, setHeroCount }) => {
           <p id="typed-text2">{text2}</p>
         </div>
       </div>
-      <div className="font-body justify-center flex mt-16">
+      <div className="font-body justify-center flex mt-10 mb-10">
         {/* Explore Recipes Button */}
         <button
           className="bg-white bg-opacity-20 backdrop-blur-md p-5 rounded-full border-none text-white cursor-pointer text-2xl transition duration-300 ease-in-out hover:bg-opacity-40"
@@ -156,7 +156,7 @@ const Home = ({ heroData, heroCount, setHeroCount }) => {
       </div>
 
       {/* Introduction Content */}
-      <div className="mt-32 mb-10 text-center flex items-center justify-center font-body">
+      <div className="mt-20 mb-10 text-center flex items-center justify-center font-body">
         <div className="mr-4">
           <h2 className="text-3xl font-semi-bold font-body">
             Welcome to<span className="font-write text-4xl font-bold"> Food</span>
@@ -173,8 +173,8 @@ const Home = ({ heroData, heroCount, setHeroCount }) => {
           />
         </div>
       </div>
-      <div className="bg-gray-200 mb-24 mt-20">
-        <p className="font-body mt-20 flex justify-center text-2xl">Check out awesome recipes</p>
+      <div className="border-t border-gray-400 mb-24 mt-20">
+        <p className="font-body font-bold mt-20 flex justify-center text-3xl">Check out awesome recipes</p>
         <div ref={recipesSectionRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10 my-20">
           {recipes.map((recipe) => (
             <div 
@@ -210,12 +210,12 @@ const Home = ({ heroData, heroCount, setHeroCount }) => {
         </div>
       </div>
       
-      <div>
-        <div className='font-body font-bold flex justify-center text-2xl mb-20'>Blogs</div>
+      <div className="border-t border-gray-400 mb-20">
+        <div className='font-body font-bold flex justify-center text-3xl mb-20 mt-5'>Blogs</div>
         <div className="featured-slider">
           <Swiper
             spaceBetween={30}
-            slidesPerView={2.2} // Slightly reduce the number of slides per view to shrink the size of each card
+            slidesPerView={3} // Slightly reduce the number of slides per view to shrink the size of each card
             navigation
             pagination={{ clickable: true }}
             modules={[Navigation, Pagination]}
@@ -224,7 +224,7 @@ const Home = ({ heroData, heroCount, setHeroCount }) => {
             {bloggs.map((blogg) => (
               <SwiperSlide key={blogg.id}>
                 <div
-                  className="bg-white rounded-lg font-body shadow-lg overflow-hidden transition hover:shadow-xl hover:scale-[0.9] w-[90%] mx-auto"  // Adjust card width
+                  className="bg-white rounded-lg font-body shadow-lg overflow-hidden transition hover:shadow-xl hover:scale-[0.9] w-[80%] mx-auto"  // Adjust card width
                 >
                   <img src={blogg.image} alt={blogg.name} className="w-full h-48 object-cover" />
                   <div className="p-6 flex flex-wrap font-body">
